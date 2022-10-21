@@ -53,12 +53,11 @@ int main() {
     
     /* Initial state */
     Oe_Xi << img_w/2, img_h/2;
-    // Oe_Xi << 0, 0;
     theta_i = 0;
     /* Final State */
-    Oe_Xf << (img_w)/2, (img_h)/2;
+    // Oe_Xf << (img_w)/2, (img_h)/2;
     // Oe_Xf << (img_w+ee_l)/2, (img_h-ee_l)/2;
-    // Oe_Xf << 60, 60;
+    Oe_Xf << 60, 60;
     theta_f = 45;
     theta_f *= (M_PI/180);
 
@@ -130,15 +129,15 @@ int main() {
             /* Wire i size: li = norm2(pi - ej) where pi is the vector of the pulley i in the world frame and ej is the vector of end-effector corner connected to pi also in the world frame */
         
             /* Get previous wires positions */
-        Eigen::Vector2d w1_v = {pulley_1_c(0) - X(0, 0), pulley_1_c(1) - X(1, 0)}; 
-        Eigen::Vector2d w2_v = {pulley_2_c(0) - X(0, 1), pulley_2_c(1) - X(1, 1)}; 
-        Eigen::Vector2d w3_v = {pulley_3_c(0) - X(0, 2), pulley_3_c(1) - X(1, 2)}; 
-        Eigen::Vector2d w4_v = {pulley_4_c(0) - X(0, 3), pulley_4_c(1) - X(1, 3)};
-            /* Update wires positions */
         Eigen::Vector2d w1_v_prev = {pulley_1_c(0) - X_prev(0, 0), pulley_1_c(1) - X_prev(1, 0)}; 
         Eigen::Vector2d w2_v_prev = {pulley_2_c(0) - X_prev(0, 1), pulley_2_c(1) - X_prev(1, 1)}; 
         Eigen::Vector2d w3_v_prev = {pulley_3_c(0) - X_prev(0, 2), pulley_3_c(1) - X_prev(1, 2)}; 
         Eigen::Vector2d w4_v_prev = {pulley_4_c(0) - X_prev(0, 3), pulley_4_c(1) - X_prev(1, 3)};
+            /* Update wires positions */
+        Eigen::Vector2d w1_v = {pulley_1_c(0) - X(0, 0), pulley_1_c(1) - X(1, 0)}; 
+        Eigen::Vector2d w2_v = {pulley_2_c(0) - X(0, 1), pulley_2_c(1) - X(1, 1)}; 
+        Eigen::Vector2d w3_v = {pulley_3_c(0) - X(0, 2), pulley_3_c(1) - X(1, 2)}; 
+        Eigen::Vector2d w4_v = {pulley_4_c(0) - X(0, 3), pulley_4_c(1) - X(1, 3)};
 
         double l1 = w1_v.norm(); 
         double l2 = w2_v.norm(); 
@@ -188,13 +187,14 @@ int main() {
         // cout << T << endl;
 
         /* ============================================================================================= */
+        /* Draw scenario */
 
         /* Reset background */
         img.create(400, 600, CV_8UC3);
         img.setTo(cv::Scalar(0, 0, 0));
         cv::rectangle(img, cv::Point(0, 0), cv::Point(img_w, img_h), cv::Scalar(255, 255, 255), 10, cv::LINE_8, 0);
 
-        /* Update scenario */
+        /* Update figures */
             /* End-effector */
         cv::line(img, cv::Point(X(0, 0), X(1, 0)), cv::Point(X(0, 1), X(1, 1)), WHITE, ee_t);
         cv::line(img, cv::Point(X(0, 1), X(1, 1)), cv::Point(X(0, 2), X(1, 2)), WHITE, ee_t);
