@@ -210,6 +210,19 @@ int main() {
         cv::line(img, cv::Point(wire_2_start(0), wire_2_start(1)), cv::Point(wire_2_end(0), wire_2_end(1)), RED, wire_d);
         cv::line(img, cv::Point(wire_3_start(0), wire_3_start(1)), cv::Point(wire_3_end(0), wire_3_end(1)), RED, wire_d);
         cv::line(img, cv::Point(wire_4_start(0), wire_4_start(1)), cv::Point(wire_4_end(0), wire_4_end(1)), RED, wire_d);
+            /* Wires sizes labels */
+        std::stringstream ss1;
+        ss1 << std::fixed << std::setprecision(2) << l1;
+        cv::putText(img, (ss1.str()+"cm"), cv::Point(30, 30), cv::FONT_HERSHEY_DUPLEX, 0.5, WHITE, 1,false);
+        std::stringstream ss2;
+        ss2 << std::fixed << std::setprecision(2) << l2;
+        cv::putText(img, (ss2.str()+"cm"), cv::Point(30, 370), cv::FONT_HERSHEY_DUPLEX, 0.5, WHITE, 1,false);
+        std::stringstream ss3;
+        ss3 << std::fixed << std::setprecision(2) << l3;
+        cv::putText(img, (ss3.str()+"cm"), cv::Point(480, 370), cv::FONT_HERSHEY_DUPLEX, 0.5, WHITE, 1,false);
+        std::stringstream ss4;
+        ss4 << std::fixed << std::setprecision(2) << l4;
+        cv::putText(img, (ss4.str()+"cm"), cv::Point(480, 30), cv::FONT_HERSHEY_DUPLEX, 0.5, WHITE, 1,false);
             /* Motors */
         cv::line(img, cv::Point(pulley_1_c(0), pulley_1_c(1)), cv::Point(pulley_1_c(0) + (pulley_r+5)*cos(j1*2*M_PI), pulley_1_c(1) + (pulley_r+5)*sin(j1*2*M_PI)), BLUE, 3);
         cv::line(img, cv::Point(pulley_2_c(0), pulley_2_c(1)), cv::Point(pulley_2_c(0) + (pulley_r+5)*cos(j2*2*M_PI), pulley_2_c(1) + (pulley_r+5)*sin(j2*2*M_PI)), BLUE, 3);
