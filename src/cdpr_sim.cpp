@@ -62,7 +62,7 @@ int main() {
     theta_f *= (M_PI/180);
 
     /* Time interval for simulation */
-    const double Dt = 1;
+    const double Dt = 5;
     /* Time interval between frames */
     const double dt = 1e-3;
     /* Variations in x and y position and theta orientation for each time frame */
